@@ -1,6 +1,8 @@
 #include "leptjson.h"
 #include <assert.h>  /* assert() */
 #include <stdlib.h>  /* NULL, strtod() */
+#include <stdio.h>  /* NULL, strtod() */
+#include <float.h>  /* NULL, strtod() */
 
 #define EXPECT(c, ch)       do { assert(*c->json == (ch)); c->json++; } while(0)
 
@@ -58,6 +60,9 @@ static int lept_parse_literal(lept_context* c, lept_value* v, const char* litern
 }
 
 static int lept_parse_number(lept_context* c, lept_value* v) {
+    //printf("%f\n", DBL_MAX);
+    printf("float max: %f\n", FLT_MAX);
+    printf("float min: %f\n", FLT_MIN);
     char* end;
     /* \TODO validate number */
     v->n = strtod(c->json, &end);
